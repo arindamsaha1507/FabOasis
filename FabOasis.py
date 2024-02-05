@@ -14,7 +14,6 @@ from fabsim.base.fab import (
     put_configs,
     task,
     with_config,
-    update_environment,
 )
 
 # Add local script, blackbox and template path.
