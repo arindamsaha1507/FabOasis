@@ -41,4 +41,3 @@ def eve(config, **args):
     with_config(config)
     execute(put_configs, config)
     job(dict(script="eve", wall_time="0:15:0", memory="2G"), args)
-
