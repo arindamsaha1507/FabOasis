@@ -12,6 +12,14 @@ echo $(pwd) >> run.log
 
 cp -r $HOME/Scratch/input/ .
 cp -r $HOME/Scratch/static/ .
+cp -r $HOME/Scratch/utils/ .
+
+python3 utils/set_fm_profile.py input/fm_profile.csv $calc_value
+
+cd input
+fmprofiletobin < fm_profile.csv > fm_profile.bin
+cd ..
+
 mkdir -p work/summary1/
 
 eve 1 1 | getmodel | gulcalc -R10 -S$samples -i - |fmcalc | summarycalc -f -1 - >  work/summary1/summarycalc1.bin

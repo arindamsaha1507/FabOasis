@@ -4,7 +4,8 @@ default:
 
     run: 0
     samples: 10
+    calc_value: 100
   
-    infile: "test.txt"
-    outfile: 'output.csv'
+    input_dir: "input"
+    static_dir: 'static'
 
