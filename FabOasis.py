@@ -9,13 +9,10 @@ from fabsim.base.fab import (
     add_local_paths,
     env,
     execute,
-    find_config_file_path,
     job,
     load_plugin_env_vars,
     put_configs,
-    run_ensemble,
     task,
-    update_environment,
     with_config,
 )
 
@@ -40,12 +37,7 @@ def eve(config, **args):
 
     print(env)
 
-    # update_environment(args, {"eco_script": eco_script})
-
-    set_eco_args_list(args)
-
     with_config(config)
     execute(put_configs, config)
-    print(args)
     job(dict(script="eve", wall_time="0:15:0", memory="2G"), args)
 

@@ -3,10 +3,15 @@ source $HOME/.bashrc
 
 
 module load gcc-libs/4.9.2 python/3.6.3 unixodbc/2.3.7 oasislmf/ktools/3.0.3 oasislmf/1.2.4
-#module load gcc-libs/4.9.2 python/3.9.10 unixodbc/2.3.7 oasislmf/ktools/3.9.5/ oasislmf/1.26.3
 
-echo "Running with $config settings
-echo "$(pwd)" >> test.log
+echo "Running with $config settings"
+echo $(pwd)
+
+cp -r $HOME/Scratch/input/ .
+cp -r $HOME/Scratch/static/ .
+mkdir -p work/summary1/
+
+
 eve 1 1 | getmodel | gulcalc -R10 -S10 -i - |fmcalc | summarycalc -f -1 - >  work/summary1/summarycalc1.bin
 echo "calculations done" >> test.log
 leccalc -r -Ksummary1 -F work/summary1/lec_full_uncertainty_agg.csv
