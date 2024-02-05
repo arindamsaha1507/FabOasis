@@ -14,6 +14,7 @@ from fabsim.base.fab import (
     put_configs,
     task,
     with_config,
+    update_environment,
 )
 
 # Add local script, blackbox and template path.
@@ -35,10 +36,25 @@ def eve(config, **args):
             memory : memory per node
     """
 
-    print(env)
-    print(args)
+    args = set_missing_parameters(args)
 
     with_config(config)
     execute(put_configs, config)
     job(dict(script="eve", wall_time="0:15:0", memory="2G"), args)
 
+
+def set_missing_parameters(args):
+    """Set parameters for the FabDummy plugin.
+    Keyword arguments:
+            cores : number of compute cores to request
+            images : number of images to take
+            steering : steering session i.d.
+            wall_time : wall-time job limit
+            memory : memory per node
+    """
+
+    for key, value in env.eve_args.items():
+        if key not in args:
+            args[key] = value
+
+    return args

@@ -1,6 +1,9 @@
 default:
 
   eve_args:
+
+    run: 0
+    samples: 10
   
     infile: "test.txt"
     outfile: 'output.csv'
