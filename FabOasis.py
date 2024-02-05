@@ -36,6 +36,7 @@ def eve(config, **args):
     """
 
     print(env)
+    print(args)
 
     with_config(config)
     execute(put_configs, config)

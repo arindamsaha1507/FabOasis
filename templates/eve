@@ -4,15 +4,17 @@ source $HOME/.bashrc
 
 module load gcc-libs/4.9.2 python/3.6.3 unixodbc/2.3.7 oasislmf/ktools/3.0.3 oasislmf/1.2.4
 
-echo "Running with $config settings"
-echo $(pwd)
+mkdir run_$sample
+cd run_$sample
+
+echo "Running with $config settings" >> run.log
+echo $(pwd) >> run.log
 
 cp -r $HOME/Scratch/input/ .
 cp -r $HOME/Scratch/static/ .
 mkdir -p work/summary1/
 
-
 eve 1 1 | getmodel | gulcalc -R10 -S10 -i - |fmcalc | summarycalc -f -1 - >  work/summary1/summarycalc1.bin
-echo "calculations done" >> test.log
+echo "calculations done" >> run.log
 leccalc -r -Ksummary1 -F work/summary1/lec_full_uncertainty_agg.csv
 
